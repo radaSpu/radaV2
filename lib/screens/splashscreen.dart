@@ -1,0 +1,100 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:radaspu_2/screens/login.dart';
+import 'package:radaspu_2/theme.dart';
+
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Color(0xffE4B04A),
+        body: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),
+            child: ListView(children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+
+                child: const Text(
+                  'Welcome to',
+                  style: TextStyle(fontSize: 35,
+                    fontWeight: FontWeight.w700,
+                      fontFamily: 'Montserrat'),
+
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+
+                child: const Text(
+                  'Rada St.Pauls',
+                  style: TextStyle(fontSize: 35,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Montserrat'
+                  ),
+
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+
+                child: const Text(
+                  'For Your Mental Health Needs',
+                  style: TextStyle(fontSize: 16,
+                      fontFamily: 'Montserrat'),
+
+                ),
+              ),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 60),
+                  padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/Rada_SPU_Logo.png',
+                      width: double.infinity,
+                      height: 150,
+                    ),
+                  )),
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Sign up',
+                      style: TextStyle(color: Colors.white)),
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                              side: BorderSide(color: AppColours.black),
+
+                          )
+
+                      ),
+                    backgroundColor: MaterialStateProperty.all(Colors.black),
+                    minimumSize: MaterialStateProperty.all(Size(60,60))
+                  ),
+                  onPressed: () {
+                    // print(nameController.text);
+                    // print(passwordController.text);
+                  },
+                ),
+
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(PageTransition(
+                        type: PageTransitionType.leftToRightWithFade, child: Login()));
+                  },
+                  child: const Text('Already have an account?Login',
+                  style: TextStyle(fontFamily: 'Montserrat',color: Colors.black))
+              ),
+            ])));
+  }
+}
