@@ -29,8 +29,8 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.radaspu_2"
-        minSdkVersion 16
+        applicationId "com.radaspu.radaspu"
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -48,3 +48,10 @@ android {
 flutter {
     source '../..'
 }
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+}
+apply plugin: 'com.google.gms.google-services'

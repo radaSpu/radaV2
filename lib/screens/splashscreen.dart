@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:radaspu_2/screens/login.dart';
+import 'package:radaspu_2/screens/studentauth.dart';
 import 'package:radaspu_2/theme.dart';
 
 
@@ -81,8 +82,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     minimumSize: MaterialStateProperty.all(Size(60,60))
                   ),
                   onPressed: () {
-                    // print(nameController.text);
-                    // print(passwordController.text);
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => StudentAuth()));
                   },
                 ),
 

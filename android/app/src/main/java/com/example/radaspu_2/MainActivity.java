@@ -1,4 +1,4 @@
-package com.example.radaspu_2;
+package com.radaspu.radaspu;
 
 import io.flutter.embedding.android.FlutterActivity;
 
