@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:radaspu_2/screens/login.dart';
-
+import 'package:http/http.dart' as http;
 
 import '../theme.dart';
 
@@ -181,26 +181,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
         selectedDate = selected;
       });
   }
+
+  // void storeToMysql(String userid) async {
+  //   //Mysql Part Start
+  //   http.Response response = await http
+  //       .post('http://rada.uonbi.ac.ke/radaweb/api/api/user/signup', headers: {
+  //     "Accept": "application/json"
+  //   }, body: {
+  //     "user_id": userid,
+  //     "name": usernameController.text.trim(),
+  //     "dob": dobController.text.trim(),
+  //     "image": "user_image",
+  //     "account_status": "1",
+  //     "email": emailController.text.trim(),
+  //     "campus_id": universityController.text.trim(),
+  //     "joined": DateTime.now().toString(),
+  //     "phone_id":
+  //     "SCVBSCBW8E8R9EWRF8R8FUSDJSKVPOXDBUR8EREBVUDFYEUREFYRREUREFHBD8E89E",
+  //     "phone": phoneController.text.trim(),
+  //     "gender": genderController.text.trim(),
+  //     "mentorship_status": "false"
+  //   });
+  // }
 }
 
-// void storeToMysql(String userid) async {
-//   //Mysql Part Start
-//   http.Response response = await http
-//       .post('http://rada.uonbi.ac.ke/radaweb/api/api/user/signup', headers: {
-//     "Accept": "application/json"
-//   }, body: {
-//     "user_id": userid,
-//     "name": widget.name,
-//     "dob": DateTime.now().toString(),
-//     "image": "user_image",
-//     "account_status": "1",
-//     "email": widget.email,
-//     "campus_id": widget.campus,
-//     "joined": DateTime.now().toString(),
-//     "phone_id":
-//     "SCVBSCBW8E8R9EWRF8R8FUSDJSKVPOXDBUR8EREBVUDFYEUREFYRREUREFHBD8E89E",
-//     "phone": widget.phone.toString(),
-//     "gender": _dropDownValue2.toString(),
-//     "mentorship_status": "false"
-//   });
-// }

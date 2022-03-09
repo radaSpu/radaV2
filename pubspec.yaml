@@ -30,6 +30,7 @@ dependencies:
   form_field_validator:
   # add this line to your dependencies
   fluttertoast: ^8.0.9
+  http:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
