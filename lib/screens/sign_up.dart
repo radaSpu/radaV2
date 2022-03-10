@@ -40,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(10),
                       child: const Text(
-                        'Tell us a litte bit about yourself...',
+                        'Tell us a little bit about yourself...',
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600,

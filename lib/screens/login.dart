@@ -8,6 +8,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:radaspu_2/screens/dashboard.dart';
 import 'package:radaspu_2/screens/sign_up.dart';
+import 'package:radaspu_2/screens/studentauth.dart';
 import 'package:radaspu_2/theme.dart';
 
 class Login extends StatefulWidget {
@@ -138,7 +139,7 @@ class _LoginState extends State<Login> {
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => SignUpScreen()));
+                              MaterialPageRoute(builder: (context) => StudentAuth()));
                         },
                         child: const Text('Does not have an account',
                           style: TextStyle(color: Colors.black),)
@@ -157,7 +158,7 @@ class _LoginState extends State<Login> {
           email: email.trim(), password: password.trim());
       var user = result.user;
 
-      if (user != null) {
+      if (user != null && user.emailVerified) {
         await Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Dashboard()),
