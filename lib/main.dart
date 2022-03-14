@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:radaspu_2/screens/dashboard.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData( buttonColor: Colors.black ),
       /*home: GettingStartedScreen(),*/
-      home: SplashScreen(),
+      home: Dashboard(),
       /*routes: {
         LoginScreen.routeName: (ctx) => LoginScreen(),
         SignupScreen.routeName: (ctx) => SignupScreen(),

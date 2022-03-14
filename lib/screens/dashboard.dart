@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:radaspu_2/screens/help.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Information.dart';
 
@@ -14,6 +17,53 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   static const IconData menu = IconData(0x0000, fontFamily: 'MaterialIcons');
+  bool? synced;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  bool fetched = false;
+  List useruid = [];
+  late Map details;
+
+  void getId() async {
+    User user = await _firebaseAuth.currentUser!;
+    useruid.add(user.uid);
+  }
+
+  void getSynced() async {
+    late Map d;
+    try {
+      User user = await _firebaseAuth.currentUser!;
+      FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user.uid)
+          .get()
+          .then((value) {
+        FirebaseFirestore.instance
+            .collection("Mentors")
+            .doc(user.uid)
+            .collection("requests").get()
+            .then((reqs) {
+          // synced = true;
+          Map<String, dynamic> data = value.data() as Map<String, dynamic>;
+          d = {
+            "synced": data['synced'],
+            "name": data['name'],
+            "user_type": data['user_type'],
+            "count": reqs.docs.length
+          };
+        }).then((value) {
+          details = d;
+          setState(() {
+            fetched = true;
+          });
+        });
+      });
+    }
+    catch (e) {
+      print(e);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +117,10 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => Information(
-                                )));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => Information(synced: synced)));
                       },
-                      child: _cardDashBoard(
-                          'Information',
-                          'Knowledge is power',
+                      child: _cardDashBoard('Information', 'Knowledge is power',
                           'assets/images/Information_Icon.png'),
                     ),
                   ),
@@ -150,11 +195,8 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => Help(
-                                )));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => Help()));
                       },
                       child: _cardDashBoard('Help', 'Locations and Contacts',
                           'assets/images/HELP_Icon.png'),
@@ -212,7 +254,8 @@ Widget _cardDashBoard(String title, String description, String image) {
             ),
             subtitle: Text(
               description,
-              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+              style: TextStyle(color: Colors.black.withOpacity(0.6),
+                fontFamily: 'Montserrat'),
             ),
           ),
         ),
