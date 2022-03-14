@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +18,7 @@ class Help extends StatefulWidget {
 class _HelpState extends State<Help> {
   final List<Map> imgList = [];
   final List<Map> newsList = [];
-  // Map news;
+  late Map news;
 
   @override
   Widget build(BuildContext context) {
@@ -141,24 +143,25 @@ class _HelpState extends State<Help> {
   }
 
   void getContacts() async {
-    // print('Fetching Contacts...');
-    // http.Response response = await http.get(
-    //     'http://rada.uonbi.ac.ke/radaweb/api/contacts/get/1',
-    //     headers: {"Accept": "application/json"});
-    //
-    // var convert = await json.decode(response.body);
-    // for (var i = 0; i < convert.length; i++) {
-    //   news = convert[i];
-    //   setState(() {
-    //     newsList.add(news);
-    //   });
-    // }
-    //
-    // for (var i = 0; i < newsList.length; i++) {
-    //   imgList.add(newsList[i]);
-    //   //print(imgList);
-    // }
-    // //print(newsList);
+    print('Fetching Contacts...');
+    var url = Uri.parse('http://rada.uonbi.ac.ke/radaweb/api/contacts/get/1');
+    http.Response response = await http.get(url,
+        headers: {"Accept": "application/json"});
+
+    var convert = await json.decode(response.body);
+    for (var i = 0; i < convert.length; i++) {
+      news = convert[i];
+      print(news);
+      setState(() {
+        newsList.add(news);
+      });
+    }
+
+    for (var i = 0; i < newsList.length; i++) {
+      imgList.add(newsList[i]);
+      //print(imgList);
+    }
+    //print(newsList);
   }
 
   Widget services() {
@@ -219,7 +222,7 @@ class _HelpState extends State<Help> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 45,
-            child: ElevatedButton(
+            child: OutlineButton(
               child: Text("University Accomodation",
                   style: TextStyle(color: Colors.blue)),
               /*width: MediaQuery.of(context).size.width,
