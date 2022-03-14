@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
             .doc(user.uid)
             .collection("requests").get()
             .then((reqs) {
-          // synced = true;
+          synced = true;
           Map<String, dynamic> data = value.data() as Map<String, dynamic>;
           d = {
             "synced": data['synced'],
@@ -64,6 +64,25 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // detailsHelper = DetailsHelper();
+    setState(() {
+      getId();
+    });
+
+    getSynced();
+
+    //shared();
+
+    //sayOnline();
+
+    /*_firebaseMessaging.getToken().then((deviceToken) {
+      print(deviceToken);
+    });*/
+  }
 
   @override
   Widget build(BuildContext context) {

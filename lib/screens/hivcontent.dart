@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:radaspu_2/model/hivmodel.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
 import 'package:radaspu_2/utils/hiv_helper.dart';
 import 'package:readmore/readmore.dart';
 
@@ -87,10 +90,10 @@ class _HivContentState extends State<HivContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -101,7 +104,7 @@ class _HivContentState extends State<HivContent> {
                   child: ReadMoreText(
                     content.toString(),
                     trimLines: 5,
-                    colorClickableText: Colors.green[400],
+                    colorClickableText: AppColours.colorMain,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: '...read more',
                     trimExpandedText: ' show less',
@@ -110,7 +113,7 @@ class _HivContentState extends State<HivContent> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),
@@ -148,7 +151,7 @@ class _HivContentState extends State<HivContent> {
             body: FutureBuilder(
           builder: (context, projectSnap) {
             if(projectSnap.hasData) {
-              var myList = projectSnap.data! as Map<String, dynamic>;
+              var myList = projectSnap.data! as List<HivModel>;
               return ListView.builder(
                 itemCount: projectSnap.data == null ? 0 : 1,
                 itemBuilder: (context, index) {
@@ -237,7 +240,7 @@ class _HivContentState extends State<HivContent> {
                                         color: Colors.white,
                                         fontSize: 19,
                                         fontWeight: FontWeight.w600,
-                                        fontFamily: 'Raleway-regular'),
+                                        fontFamily: 'Montserrat'),
                                   ),
                                   Padding(
                                       padding: EdgeInsets.only(right: 10),
@@ -270,10 +273,10 @@ class _HivContentState extends State<HivContent> {
                                     Text(
                                       data[index]["title"].toString(),
                                       style: TextStyle(
-                                          color: Colors.green,
+                                          color: AppColours.colorMain,
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600,
-                                          fontFamily: 'Raleway-regular'),
+                                          fontFamily: 'Montserrat'),
                                     ),
                                   ],
                                 ),
@@ -290,7 +293,7 @@ class _HivContentState extends State<HivContent> {
                                         color: Colors.grey[800],
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600,
-                                        fontFamily: 'Raleway-regular'),
+                                        fontFamily: 'Montserrat'),
                                   ),
                                 ),
                               ],
@@ -432,7 +435,7 @@ class _HivContentState extends State<HivContent> {
                               color: Colors.black54,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -451,7 +454,7 @@ class _HivContentState extends State<HivContent> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular'),
+                        fontFamily: 'Montserrat'),
                   ),
                 ),
               ],

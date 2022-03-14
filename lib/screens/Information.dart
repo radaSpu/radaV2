@@ -101,8 +101,7 @@ class _InformationState extends State<Information> {
     final SharedPreferences prefs = await _prefs;
     //prefs.setInt('savedNumber', 1);
     final synced = prefs.getInt('synced') ?? 0;
-    dsync = 0;
-    print(dsync);
+    dsync = synced;
     /*print("Is it synced ? "+synced.toString());*/
   }
 
@@ -258,7 +257,7 @@ class _InformationState extends State<Information> {
                                   child: Text(
                                     "News And Other Announcements",
                                     style: TextStyle(
-                                        fontFamily: 'Raleway-regular',
+                                        fontFamily: 'Montserrat',
                                         color: Colors.white),
                                   )),
                             ),
@@ -365,7 +364,7 @@ class _InformationState extends State<Information> {
                                                           fontWeight:
                                                           FontWeight.bold,
                                                           fontFamily:
-                                                          'Raleway-regular'),
+                                                          'Montserrat'),
                                                     ),
                                                   ),
                                                 ],
@@ -408,7 +407,7 @@ class _InformationState extends State<Information> {
                                     child: Text(
                                       "Alcohol & Drug Abuse",
                                       style: TextStyle(
-                                          fontFamily: 'Raleway-regular',
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white),
                                     )),
                               ),
@@ -460,7 +459,7 @@ class _InformationState extends State<Information> {
                                     child: Text(
                                       "Sexual & Reproductive Health",
                                       style: TextStyle(
-                                          fontFamily: 'Raleway-regular',
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white),
                                     )),
                               ),
@@ -516,7 +515,7 @@ class _InformationState extends State<Information> {
                                     child: Text(
                                       "General Health",
                                       style: TextStyle(
-                                          fontFamily: 'Raleway-regular',
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white),
                                     )),
                               ),
@@ -572,7 +571,7 @@ class _InformationState extends State<Information> {
                                     child: Text(
                                       "Mental Health",
                                       style: TextStyle(
-                                          fontFamily: 'Raleway-regular',
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white),
                                     )),
                               ),
@@ -628,7 +627,7 @@ class _InformationState extends State<Information> {
                                     child: Text(
                                       "Safety",
                                       style: TextStyle(
-                                          fontFamily: 'Raleway-regular',
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white),
                                     )),
                               ),
@@ -691,7 +690,7 @@ class _InformationState extends State<Information> {
                                     child: Text(
                                       "HIV & AIDS",
                                       style: TextStyle(
-                                          fontFamily: 'Raleway-regular',
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white),
                                     )),
                               ),
@@ -729,7 +728,7 @@ class _InformationState extends State<Information> {
                                     child: Text(
                                       "Career & Financial Management",
                                       style: TextStyle(
-                                          fontFamily: 'Raleway-regular',
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white),
                                     )),
                               ),
@@ -810,7 +809,7 @@ class _InformationState extends State<Information> {
                           child: ListBody(
                             children: <Widget>[
                               //Text('Fetch Data.'),
-                              Text('Syncing is required the first time to fetch data',style: TextStyle(fontFamily: 'Raleway-regular',fontWeight: FontWeight.bold,fontSize: 16),),
+                              Text('Syncing is required the first time to fetch data',style: TextStyle(fontFamily: 'Montserrat',fontWeight: FontWeight.bold,fontSize: 16),),
                             ],
                           ),
                         ),
@@ -1019,7 +1018,7 @@ class _InformationState extends State<Information> {
                 Text(
                   'Syncing is required the first time to fetch data',
                   style: TextStyle(
-                      fontFamily: 'Raleway-regular',
+                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),

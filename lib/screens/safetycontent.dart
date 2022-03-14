@@ -3,6 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:radaspu_2/model/safetymodel.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
 import 'package:radaspu_2/utils/hiv_helper.dart';
 import 'package:radaspu_2/utils/safety_helper.dart';
 import 'package:readmore/readmore.dart';
@@ -70,7 +75,7 @@ class _SafetyContentState extends State<SafetyContent> {
             body: FutureBuilder(
           builder: (context, projectSnap) {
             if(projectSnap.hasData) {
-              var myList = projectSnap.data! as Map<String, dynamic>;
+              var myList = projectSnap.data! as List<SafetyModel>;
               return ListView.builder(
                 itemCount: projectSnap.data == null ? 0 : 1,
                 itemBuilder: (context, index) {
@@ -212,7 +217,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -246,10 +251,10 @@ class _SafetyContentState extends State<SafetyContent> {
                                         Text(
                                           data[index]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                       ],
                                     ),
@@ -266,7 +271,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                     ),
                                   ],
@@ -345,7 +350,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -379,10 +384,10 @@ class _SafetyContentState extends State<SafetyContent> {
                                         Text(
                                           data[4]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                       ],
                                     ),
@@ -399,7 +404,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                     ),
                                   ],
@@ -481,7 +486,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -515,10 +520,10 @@ class _SafetyContentState extends State<SafetyContent> {
                                         Text(
                                           data[12]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                       ],
                                     ),
@@ -535,7 +540,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                     ),
                                   ],
@@ -623,7 +628,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -657,10 +662,10 @@ class _SafetyContentState extends State<SafetyContent> {
                                         Text(
                                           data[9]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                       ],
                                     ),
@@ -677,7 +682,7 @@ class _SafetyContentState extends State<SafetyContent> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                     ),
                                   ],
@@ -793,10 +798,10 @@ class _SafetyContentState extends State<SafetyContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -815,7 +820,7 @@ class _SafetyContentState extends State<SafetyContent> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular'),
+                        fontFamily: 'Montserrat'),
                   ),
                 ),
               ],

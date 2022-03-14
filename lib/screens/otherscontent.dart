@@ -3,6 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:radaspu_2/model/othersmodel.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
 import 'package:radaspu_2/utils/health_helper.dart';
 import 'package:radaspu_2/utils/mental_helper.dart';
 import 'package:radaspu_2/utils/others_helper.dart';
@@ -94,7 +99,7 @@ class _OthersContentState extends State<OthersContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Raleway-regular'),
@@ -108,7 +113,7 @@ class _OthersContentState extends State<OthersContent> {
                   child: ReadMoreText(
                     content.toString(),
                     trimLines: 5,
-                    colorClickableText: Colors.green[400],
+                    colorClickableText: AppColours.colorMain,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: '...read more',
                     trimExpandedText: ' show less',
@@ -176,7 +181,7 @@ class _OthersContentState extends State<OthersContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Raleway-regular'),
@@ -190,7 +195,7 @@ class _OthersContentState extends State<OthersContent> {
                   child: ReadMoreText(
                     content.toString(),
                     trimLines: 5,
-                    colorClickableText: Colors.green[400],
+                    colorClickableText: AppColours.colorMain,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: '...read more',
                     trimExpandedText: ' show less',
@@ -237,7 +242,7 @@ class _OthersContentState extends State<OthersContent> {
             body: FutureBuilder(
           builder: (context, projectSnap) {
             if(projectSnap.hasData) {
-              var myList = projectSnap.data! as Map<String, dynamic>;
+              var myList = projectSnap.data! as List<OthersModel>;
               return ListView.builder(
                 itemCount: projectSnap.data == null ? 0 : 1,
                 itemBuilder: (context, index) {
@@ -382,7 +387,7 @@ class _OthersContentState extends State<OthersContent> {
                                         Text(
                                           data[index]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               fontFamily: 'Raleway-regular'),
@@ -513,7 +518,7 @@ class _OthersContentState extends State<OthersContent> {
                                         Text(
                                           data[index]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               fontFamily: 'Raleway-regular'),

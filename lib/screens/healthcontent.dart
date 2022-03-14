@@ -3,6 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:radaspu_2/model/healthmodel.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
 import 'package:radaspu_2/utils/health_helper.dart';
 import 'package:radaspu_2/utils/mental_helper.dart';
 import 'package:readmore/readmore.dart';
@@ -96,10 +106,10 @@ class _HealthContentState extends State<HealthContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -110,7 +120,7 @@ class _HealthContentState extends State<HealthContent> {
                   child: ReadMoreText(
                     content.toString(),
                     trimLines: 5,
-                    colorClickableText: Colors.green[400],
+                    colorClickableText: AppColours.colorMain,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: '...read more',
                     trimExpandedText: ' show less',
@@ -119,7 +129,7 @@ class _HealthContentState extends State<HealthContent> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),
@@ -178,10 +188,10 @@ class _HealthContentState extends State<HealthContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -192,7 +202,7 @@ class _HealthContentState extends State<HealthContent> {
                   child: ReadMoreText(
                     content.toString(),
                     trimLines: 5,
-                    colorClickableText: Colors.green[400],
+                    colorClickableText: AppColours.colorMain,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: '...read more',
                     trimExpandedText: ' show less',
@@ -201,7 +211,7 @@ class _HealthContentState extends State<HealthContent> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),
@@ -261,10 +271,10 @@ class _HealthContentState extends State<HealthContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -275,7 +285,7 @@ class _HealthContentState extends State<HealthContent> {
                   child: ReadMoreText(
                     content.toString(),
                     trimLines: 5,
-                    colorClickableText: Colors.green[400],
+                    colorClickableText: AppColours.colorMain,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: '...read more',
                     trimExpandedText: ' show less',
@@ -284,7 +294,7 @@ class _HealthContentState extends State<HealthContent> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),
@@ -321,7 +331,7 @@ class _HealthContentState extends State<HealthContent> {
             body: FutureBuilder(
               builder: (context, projectSnap) {
                 if (projectSnap.hasData) {
-                  var myList = projectSnap.data! as Map<String, dynamic>;
+                  var myList = projectSnap.data! as List<HealthModel>;
                   return ListView.builder(
                     itemCount: projectSnap.data == null ? 0 : 1,
                     itemBuilder: (context, index) {
@@ -483,7 +493,7 @@ class _HealthContentState extends State<HealthContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -517,11 +527,11 @@ class _HealthContentState extends State<HealthContent> {
                                             Text(
                                               data[0]["title"].toString(),
                                               style: TextStyle(
-                                                  color: Colors.green,
+                                                  color: AppColours.colorMain,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w600,
                                                   fontFamily:
-                                                      'Raleway-regular'),
+                                                      'Montserrat'),
                                             ),
                                           ],
                                         ),
@@ -539,7 +549,7 @@ class _HealthContentState extends State<HealthContent> {
                                                 color: Colors.grey[800],
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w600,
-                                                fontFamily: 'Raleway-regular'),
+                                                fontFamily: 'Montserrat'),
                                           ),
                                         ),
                                       ],
@@ -637,7 +647,7 @@ class _HealthContentState extends State<HealthContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -671,11 +681,11 @@ class _HealthContentState extends State<HealthContent> {
                                             Text(
                                               data[7]["title"].toString(),
                                               style: TextStyle(
-                                                  color: Colors.green,
+                                                  color: AppColours.colorMain,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w600,
                                                   fontFamily:
-                                                      'Raleway-regular'),
+                                                      'Montserrat'),
                                             ),
                                           ],
                                         ),
@@ -693,7 +703,7 @@ class _HealthContentState extends State<HealthContent> {
                                                 color: Colors.grey[800],
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w600,
-                                                fontFamily: 'Raleway-regular'),
+                                                fontFamily: 'Montserrat'),
                                           ),
                                         ),
                                       ],
@@ -801,7 +811,7 @@ class _HealthContentState extends State<HealthContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -835,11 +845,11 @@ class _HealthContentState extends State<HealthContent> {
                                             Text(
                                               data[16]["title"].toString(),
                                               style: TextStyle(
-                                                  color: Colors.green,
+                                                  color: AppColours.colorMain,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w600,
                                                   fontFamily:
-                                                      'Raleway-regular'),
+                                                      'Montserrat'),
                                             ),
                                           ],
                                         ),
@@ -857,7 +867,7 @@ class _HealthContentState extends State<HealthContent> {
                                                 color: Colors.grey[800],
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w600,
-                                                fontFamily: 'Raleway-regular'),
+                                                fontFamily: 'Montserrat'),
                                           ),
                                         ),
                                       ],
@@ -960,7 +970,7 @@ class _HealthContentState extends State<HealthContent> {
                                             color: Colors.white,
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular'),
+                                            fontFamily: 'Montserrat'),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(right: 10),
@@ -994,11 +1004,11 @@ class _HealthContentState extends State<HealthContent> {
                                             Text(
                                               data[24]["title"].toString(),
                                               style: TextStyle(
-                                                  color: Colors.green,
+                                                  color: AppColours.colorMain,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w600,
                                                   fontFamily:
-                                                      'Raleway-regular'),
+                                                      'Montserrat'),
                                             ),
                                           ],
                                         ),
@@ -1016,7 +1026,7 @@ class _HealthContentState extends State<HealthContent> {
                                                 color: Colors.grey[800],
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w600,
-                                                fontFamily: 'Raleway-regular'),
+                                                fontFamily: 'Montserrat'),
                                           ),
                                         ),
                                       ],
@@ -1131,7 +1141,7 @@ class _HealthContentState extends State<HealthContent> {
                               color: Colors.black54,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -1150,7 +1160,7 @@ class _HealthContentState extends State<HealthContent> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular'),
+                        fontFamily: 'Montserrat'),
                   ),
                 ),
               ],

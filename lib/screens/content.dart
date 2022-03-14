@@ -8,6 +8,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'package:radaspu_2/model/messages.dart';
 import 'package:radaspu_2/model/reproductive.dart';
+import 'package:radaspu_2/theme.dart';
 import 'package:radaspu_2/utils/reproductive_helper.dart';
 import 'package:readmore/readmore.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -235,7 +236,7 @@ class _ContentPageState extends State<ContentPage> {
         child: FutureBuilder(
           builder: (context, projectSnap) {
             if (projectSnap.hasData) {
-              var myList = projectSnap.data! as Map<String,dynamic>;
+              var myList = projectSnap.data! as List<Reproductive>;
               return ListView.builder(
                 itemCount: projectSnap.data == null ? 0 : 1,
                 scrollDirection: Axis.vertical,
@@ -452,7 +453,7 @@ class _ContentPageState extends State<ContentPage> {
                                               color: Colors.white,
                                               fontSize: 19,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                         Padding(
                                             padding: EdgeInsets.only(right: 10),
@@ -486,10 +487,10 @@ class _ContentPageState extends State<ContentPage> {
                                         Text(
                                           data[index]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular',
+                                              fontFamily: 'Montserrat',
                                               letterSpacing: 1),
                                         ),
                                       ],
@@ -503,7 +504,7 @@ class _ContentPageState extends State<ContentPage> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular',
+                                            fontFamily: 'Montserrat',
                                             letterSpacing: 1),
                                       ),
                                     ),
@@ -652,10 +653,10 @@ class _ContentPageState extends State<ContentPage> {
                                         Text(
                                           "Boyfriend and Girlfriend".toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                       ],
                                     ),
@@ -673,7 +674,7 @@ class _ContentPageState extends State<ContentPage> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular',
+                                            fontFamily: 'Montserrat',
                                             letterSpacing: 1),
                                       ),
                                     ),
@@ -743,10 +744,10 @@ class _ContentPageState extends State<ContentPage> {
                                         Text(
                                           data[2]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular',
+                                              fontFamily: 'Montserrat',
                                               letterSpacing: 1),
                                         ),
                                       ],
@@ -765,7 +766,7 @@ class _ContentPageState extends State<ContentPage> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular',
+                                            fontFamily: 'Montserrat',
                                             letterSpacing: 1),
                                       ),
                                     ),
@@ -859,7 +860,7 @@ class _ContentPageState extends State<ContentPage> {
                                               color: Colors.white,
                                               fontSize: 19,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                         Padding(
                                             padding: EdgeInsets.only(right: 10),
@@ -893,10 +894,10 @@ class _ContentPageState extends State<ContentPage> {
                                         Text(
                                           data[6]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                       ],
                                     ),
@@ -909,7 +910,7 @@ class _ContentPageState extends State<ContentPage> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular',
+                                            fontFamily: 'Montserrat',
                                             letterSpacing: 1),
                                       ),
                                     ),
@@ -1059,10 +1060,10 @@ class _ContentPageState extends State<ContentPage> {
                                         Text(
                                           data[15]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                       ],
                                     ),
@@ -1075,7 +1076,7 @@ class _ContentPageState extends State<ContentPage> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular',
+                                            fontFamily: 'Montserrat',
                                             letterSpacing: 1),
                                       ),
                                     ),
@@ -1293,7 +1294,7 @@ class _ContentPageState extends State<ContentPage> {
                                               color: Colors.white,
                                               fontSize: 19,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Raleway-regular'),
+                                              fontFamily: 'Montserrat'),
                                         ),
                                         Padding(
                                             padding: EdgeInsets.only(right: 10),
@@ -1327,10 +1328,10 @@ class _ContentPageState extends State<ContentPage> {
                                         Text(
                                           data[24]["title"].toString(),
                                           style: TextStyle(
-                                            color: Colors.green,
+                                            color: AppColours.colorMain,
                                             fontSize: 20,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular',
+                                            fontFamily: 'Montserrat',
                                           ),
                                         ),
                                       ],
@@ -1344,7 +1345,7 @@ class _ContentPageState extends State<ContentPage> {
                                             color: Colors.grey[800],
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Raleway-regular',
+                                            fontFamily: 'Montserrat',
                                             letterSpacing: 1),
                                       ),
                                     ),
@@ -1551,7 +1552,7 @@ class _ContentPageState extends State<ContentPage> {
                               style: TextStyle(
                                   color: Colors.blueGrey,
                                   fontSize: 20,
-                                  fontFamily: 'Raleway-regular'),
+                                  fontFamily: 'Montserrat'),
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -1573,7 +1574,7 @@ class _ContentPageState extends State<ContentPage> {
                         child: Text("Introduction",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Raleway-regular',
+                                fontFamily: 'Montserrat',
                                 color: Colors.blue)),
                       ),
                       Divider(),
@@ -1585,14 +1586,14 @@ class _ContentPageState extends State<ContentPage> {
                               ? Text(content.toString(),
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontFamily: 'Raleway-regular',
+                                      fontFamily: 'Montserrat',
                                       fontSize: 16))
                               : Text(
                                   content.toString().substring(0, 225) +
                                       " ....",
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontFamily: 'Raleway-regular',
+                                      fontFamily: 'Montserrat',
                                       fontSize: 16)),
                         ),
                       ),
@@ -1670,10 +1671,10 @@ class _ContentPageState extends State<ContentPage> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -1693,7 +1694,7 @@ class _ContentPageState extends State<ContentPage> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),
@@ -1758,10 +1759,10 @@ class _ContentPageState extends State<ContentPage> {
                           ,
                           //title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -1781,7 +1782,7 @@ class _ContentPageState extends State<ContentPage> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),
@@ -1841,10 +1842,10 @@ class _ContentPageState extends State<ContentPage> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -1864,7 +1865,7 @@ class _ContentPageState extends State<ContentPage> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),
@@ -1926,7 +1927,7 @@ class _ContentPageState extends State<ContentPage> {
                               color: Colors.black54,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway-regular'),
+                              fontFamily: 'Montserrat'),
                         ),
                       ],
                     ),
@@ -1946,7 +1947,7 @@ class _ContentPageState extends State<ContentPage> {
                         color: Colors.grey[800],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway-regular',
+                        fontFamily: 'Montserrat',
                         letterSpacing: 1),
                   ),
                 ),

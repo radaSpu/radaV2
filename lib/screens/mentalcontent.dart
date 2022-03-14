@@ -3,6 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:radaspu_2/model/mentalmodel.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
+import 'package:radaspu_2/theme.dart';
 import 'package:radaspu_2/utils/mental_helper.dart';
 import 'package:readmore/readmore.dart';
 
@@ -67,7 +72,7 @@ class _MentalContentState extends State<MentalContent> {
             body: FutureBuilder(
           builder: (context, projectSnap) {
             if(projectSnap.hasData) {
-              var myList = projectSnap.data! as Map<String, dynamic>;
+              var myList = projectSnap.data! as List<MentalModel>;
               return ListView.builder(
                 itemCount: projectSnap.data == null ? 0 : 1,
                 itemBuilder: (context, index) {
@@ -217,7 +222,7 @@ class _MentalContentState extends State<MentalContent> {
                                         Text(
                                           data[index]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               fontFamily: 'Raleway-regular'),
@@ -353,7 +358,7 @@ class _MentalContentState extends State<MentalContent> {
                                         Text(
                                           data[4]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               fontFamily: 'Raleway-regular'),
@@ -478,7 +483,7 @@ class _MentalContentState extends State<MentalContent> {
                                         Text(
                                           data[7]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               fontFamily: 'Raleway-regular'),
@@ -607,7 +612,7 @@ class _MentalContentState extends State<MentalContent> {
                                         Text(
                                           data[12]["title"].toString(),
                                           style: TextStyle(
-                                              color: Colors.green,
+                                              color: AppColours.colorMain,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               fontFamily: 'Raleway-regular'),
@@ -745,7 +750,7 @@ class _MentalContentState extends State<MentalContent> {
                         Text(
                           title.toString(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: AppColours.colorMain,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Raleway-regular'),

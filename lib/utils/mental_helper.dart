@@ -36,7 +36,7 @@ class MentalHelper {
   static final created_at="created_at";
 
 
-  static late Database _db;
+  static Database? _db;
   static const String ID = 'id';
   static const String NAME = 'name';
   static const String TABLE = 'mental';
@@ -44,7 +44,7 @@ class MentalHelper {
 
   List data_list=[];
 
-  Future<Database> get db async {
+  Future<Database?> get db async {
     if (_db != null) {
       return _db;
     }
@@ -93,12 +93,12 @@ class MentalHelper {
 
   Future<int> save(Map<String,dynamic> data) async {
     var dbClient = await db;
-    return await dbClient.insert(TABLE, data);
+    return await dbClient!.insert(TABLE, data);
   }
 
   Future<List<MentalModel>> getMessages() async {
     var dbClient = await db;
-    List<Map<String,dynamic>> maps = await dbClient.rawQuery("SELECT * FROM $TABLE ORDER BY $id ASC");
+    List<Map<String,dynamic>> maps = await dbClient!.rawQuery("SELECT * FROM $TABLE ORDER BY $id ASC");
     List<MentalModel> recordings = [];
     if (maps.length > 0) {
       for (int i = 0; i < maps.length; i++) {
@@ -115,12 +115,12 @@ class MentalHelper {
 
   Future<int> delete() async {
     var dbClient = await db;
-    return await dbClient.delete(TABLE);
+    return await dbClient!.delete(TABLE);
   }
 
   Future<int> update(MentalModel messages) async {
     var dbClient = await db;
-    return await dbClient.update(TABLE, messages.toMap(),
+    return await dbClient!.update(TABLE, messages.toMap(),
         where: '$id = ?', whereArgs: [messages.id]);
   }
 
@@ -132,7 +132,7 @@ class MentalHelper {
 
   Future close() async {
     var dbClient = await db;
-    dbClient.close();
+    dbClient!.close();
   }
 
 }
