@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:radaspu_2/screens/help.dart';
+import 'package:radaspu_2/screens/mentorship.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'counsellors.dart';
 
 import 'Information.dart';
 
@@ -151,12 +153,12 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (ctx) => Information(
-                        //             synced: synced,
-                        //           )));
+                       Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (ctx) => CounsellorsHome()
+                           )
+                       );
                       },
                       child: _cardDashBoard(
                           'Student Counselling',
@@ -229,12 +231,12 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (ctx) => Information(
-                        //           synced: synced,
-                        //         )));
+                       Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (ctx) => Mentorship()
+                           )
+                       );
                       },
                       child: _cardDashBoard(
                           'Student Mentorship',
