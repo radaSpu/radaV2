@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData( buttonColor: Colors.black ),
       /*home: GettingStartedScreen(),*/
-      home: SplashScreen(),
+      home: SignUpScreen(),
       /*routes: {
         LoginScreen.routeName: (ctx) => LoginScreen(),
         SignupScreen.routeName: (ctx) => SignupScreen(),
