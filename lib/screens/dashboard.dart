@@ -7,6 +7,7 @@ import 'package:radaspu_2/screens/help.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Information.dart';
+import 'login.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -91,28 +92,56 @@ class _DashboardState extends State<Dashboard> {
           backgroundColor: Colors.white,
           elevation: 0,
           actions: [
-            PopupMenuButton(
+            PopupMenuButton<String>(
               icon: Icon(Icons.menu, color: Colors.black),
-              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                const PopupMenuItem(
+              itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+                const PopupMenuItem<String>(
+                  value:'Profile',
                   child: ListTile(
                     leading: Icon(Icons.add),
                     title: Text('Profile'),
                   ),
                 ),
-                const PopupMenuItem(
+                const PopupMenuItem<String>(
+                  value:'Contributors',
                   child: ListTile(
                     leading: Icon(Icons.anchor),
                     title: Text('Contributors'),
                   ),
                 ),
-                const PopupMenuItem(
+                const PopupMenuItem<String>(
+                  value:'Logout',
                   child: ListTile(
                     leading: Icon(Icons.article),
                     title: Text('Logout'),
                   ),
                 ),
               ],
+              enabled: true,
+              onSelected: (str) {
+                if (str == "Logout") {
+                  signOut();
+                  print("clicked");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Login()),
+                  );
+                } else if (str == "Profile") {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => ProfilePage(
+                  //         id: useruid[0],
+                  //       )),
+                  // );
+                } else if (str == "Contributors") {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (ctx) => Contributors()));
+                }
+              },
             ),
           ],
         ),
@@ -246,6 +275,11 @@ class _DashboardState extends State<Dashboard> {
               ),
             ])));
   }
+
+  void signOut() async {
+    return _firebaseAuth.signOut();
+  }
+
 }
 
 Widget _cardDashBoard(String title, String description, String image) {
