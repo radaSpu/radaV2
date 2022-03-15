@@ -44,7 +44,7 @@ dependencies:
   connectivityswift:
   cloud_firestore:
   dialogflow_flutter:
-  pusher_client:
+  pusher_client: ^2.0.0
   sqflite:
   path:
   # The following adds the Cupertino Icons font to your application.
