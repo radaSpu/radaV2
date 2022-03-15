@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Information.dart';
 import 'login.dart';
+import 'mentorshiplanding.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -257,12 +258,13 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (ctx) => Information(
-                        //           synced: synced,
-                        //         )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => MentorShipLanding(
+                                  usertype: "user",
+                                  id: useruid[0],
+                                )));
                       },
                       child: _cardDashBoard(
                           'Student Mentorship',
