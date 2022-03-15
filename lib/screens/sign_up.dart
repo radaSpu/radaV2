@@ -1,3 +1,7 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -5,6 +9,7 @@ import 'package:radaspu_2/screens/login.dart';
 import 'package:http/http.dart' as http;
 
 import '../theme.dart';
+import 'dashboard.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -21,9 +26,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController dobController = TextEditingController();
   TextEditingController genderController = TextEditingController();
 
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   DateTime selectedDate = DateTime.now();
-
+  String gender='Female';
+  late User user;
   final _formKey = GlobalKey<FormState>();
+
+  void getId() async {
+    user = await _firebaseAuth.currentUser!;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      getId();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -65,7 +85,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Container(
                       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextFormField(
-                          obscureText: true,
                           controller: phoneController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -81,7 +100,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Container(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                       child: TextFormField(
-                        obscureText: true,
                         controller: universityController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -99,7 +117,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         child: IgnorePointer(
                           child: TextFormField(
-                            obscureText: true,
                             controller: dobController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -107,22 +124,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               labelText: 'Date of Birth',
                             ),
+                            onChanged: (val) => print,
                           ),
                         ),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                      child: TextFormField(
-                        obscureText: true,
-                        controller: genderController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          labelText: 'Gender',
-                        ),
-                      ),
+                        child: DropDownFormField(
+                          titleText: 'Gender',
+                            hintText: 'Please choose one',
+                          validator:  MultiValidator([
+                          RequiredValidator(errorText: "* Required"),
+                          ]),
+                          value: gender,
+                          onSaved: (value) {
+                            setState(() {
+                              gender= value;
+                            });
+                          },
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value;
+                            });
+                          },
+                          dataSource: [
+                          {
+                          "display": "Male",
+                          "value": "Male",
+                          },
+                          {
+                            "display": "Female",
+                            "value": "Female",
+                          },
+                          ],
+                          textField: 'display',
+                          valueField: 'value',
+                    ),
                     ),
                     Container(
                       height: 70,
@@ -146,6 +184,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             print("Validated");
+
+                            storeToFirestore(usernameController.text.toString(), genderController.text.toString(),
+                                phoneController.text.toString(), universityController.text.toString(), dobController.text.toString());
                           } else {
                             print("Not Validated");
                           }
@@ -179,9 +220,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (selected != null && selected != selectedDate)
       setState(() {
         selectedDate = selected;
+        dobController.text = "${selectedDate.toLocal()}".split(' ')[0];
       });
   }
 
+
+
+  void storeToFirestore(String username, String gender, String phone, String university,String dob ) {
+    if (user.emailVerified) {
+      // FirebaseFirestore.instance.collection("UserData").doc(user.uid).set({
+      //   "email": user.email,
+      //   "username": username,
+      //   "gender": gender,
+      //   "phone": phone,
+      //   "university": university,
+      //   "date of birth": dob
+      // }).then((value) => {
+      Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => Dashboard()));
+      // });
+    }
+    else {
+      Flushbar(
+        title: 'You email is not verified',
+        message: 'Verify your email',
+        icon: Icon(
+          Icons.error_outline,
+          color: Colors.white,
+          size: 30,
+        ),
+        duration: Duration(seconds: 3),
+        isDismissible: false,
+        backgroundColor: Colors.redAccent,
+      )
+        ..show(context);
+    }
+  }
   // void storeToMysql(String userid) async {
   //   //Mysql Part Start
   //   http.Response response = await http

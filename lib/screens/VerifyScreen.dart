@@ -40,29 +40,32 @@ class _VerifyScreenState extends State<VerifyScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          children: [
-            Container(
-              child: Text(
-                  'Verifying',
-                  style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Montserrat')
+        child: Padding(
+          padding: const EdgeInsets.all(50.0),
+          child: Column(
+            children: [
+              Container(
+                child: Text(
+                    'Verifying',
+                    style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Montserrat')
 
-                  ),
-            ),
-            Container(
-              child: Text(
-                  'Your Email...',
-                  style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Montserrat')
-
+                    ),
               ),
-            ),
-          ],
+              Container(
+                child: Text(
+                    'Your Email...',
+                    style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Montserrat')
+
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       );
