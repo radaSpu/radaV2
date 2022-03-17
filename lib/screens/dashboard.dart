@@ -3,12 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:radaspu_2/screens/counsellors.dart';
 import 'package:radaspu_2/screens/help.dart';
-import 'package:radaspu_2/screens/mentorship.dart';
+import 'package:radaspu_2/screens/notification.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'counsellors.dart';
 
 import 'Information.dart';
+import 'login.dart';
+import 'mentorshiplanding.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -93,28 +95,56 @@ class _DashboardState extends State<Dashboard> {
           backgroundColor: Colors.white,
           elevation: 0,
           actions: [
-            PopupMenuButton(
+            PopupMenuButton<String>(
               icon: Icon(Icons.menu, color: Colors.black),
-              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                const PopupMenuItem(
+              itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+                const PopupMenuItem<String>(
+                  value:'Profile',
                   child: ListTile(
                     leading: Icon(Icons.add),
                     title: Text('Profile'),
                   ),
                 ),
-                const PopupMenuItem(
+                const PopupMenuItem<String>(
+                  value:'Contributors',
                   child: ListTile(
                     leading: Icon(Icons.anchor),
                     title: Text('Contributors'),
                   ),
                 ),
-                const PopupMenuItem(
+                const PopupMenuItem<String>(
+                  value:'Logout',
                   child: ListTile(
                     leading: Icon(Icons.article),
                     title: Text('Logout'),
                   ),
                 ),
               ],
+              enabled: true,
+              onSelected: (str) {
+                if (str == "Logout") {
+                  signOut();
+                  print("clicked");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Login()),
+                  );
+                } else if (str == "Profile") {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => ProfilePage(
+                  //         id: useruid[0],
+                  //       )),
+                  // );
+                } else if (str == "Contributors") {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (ctx) => Contributors()));
+                }
+              },
             ),
           ],
         ),
@@ -153,12 +183,12 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                       Navigator.push(
-                           context,
-                           MaterialPageRoute(
-                               builder: (ctx) => CounsellorsHome()
-                           )
-                       );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => CounsellorsHome()
+                            )
+                        );
                       },
                       child: _cardDashBoard(
                           'Student Counselling',
@@ -168,6 +198,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ]),
               ),
+/*
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: Row(children: [
@@ -189,18 +220,17 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ]),
               ),
+*/
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: Row(children: [
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (ctx) => Information(
-                        //           synced: synced,
-                        //         )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => Notifications()));
                       },
                       child: _cardDashBoard(
                           'Quick Notification',
@@ -231,12 +261,13 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                       Navigator.push(
-                           context,
-                           MaterialPageRoute(
-                               builder: (ctx) => Mentorship()
-                           )
-                       );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => MentorShipLanding(
+                                  usertype: "user",
+                                  id: useruid[0],
+                                )));
                       },
                       child: _cardDashBoard(
                           'Student Mentorship',
@@ -248,6 +279,11 @@ class _DashboardState extends State<Dashboard> {
               ),
             ])));
   }
+
+  void signOut() async {
+    return _firebaseAuth.signOut();
+  }
+
 }
 
 Widget _cardDashBoard(String title, String description, String image) {
@@ -269,14 +305,16 @@ Widget _cardDashBoard(String title, String description, String image) {
               title,
               style: TextStyle(
                   color: Colors.black,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                   fontFamily: 'Montserrat',
-                  fontSize: 20),
+                  fontSize: 16),
             ),
             subtitle: Text(
               description,
               style: TextStyle(color: Colors.black.withOpacity(0.6),
-                fontFamily: 'Montserrat'),
+                fontFamily: 'Montserrat',
+                fontSize: 12
+              ),
             ),
           ),
         ),

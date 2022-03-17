@@ -35,8 +35,9 @@ class _MentorshipState extends State<Mentorship> {
         itemCount: mentors.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            leading: const Icon(Icons.account_circle),
+            leading: Image.asset('assets/images/Student_Counselling_Icon.png'),
             title: Text(mentors[index]["name"]!),
+            contentPadding: EdgeInsets.fromLTRB(15, 10, 0, 10),
             onTap: () {
               Navigator.push(
                 context,

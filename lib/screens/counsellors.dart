@@ -35,8 +35,9 @@ class _CounsellorsHomeState extends State<CounsellorsHome> {
         itemCount: counsellors.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            leading: const Icon(Icons.account_circle),
+            leading: Image.asset('assets/images/Virtual_Mentorship_Icon.png'),
             title: Text(counsellors[index]["name"]!),
+            subtitle: Text("Mental health and wellbeing"),
             onTap: () {
               Navigator.push(
                 context,

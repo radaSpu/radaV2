@@ -19,39 +19,36 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
         backgroundColor: Color(0xffE4B04A),
         body: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),
+            padding:  EdgeInsets.all(10.0),
             child: ListView(children: <Widget>[
               Container(
                 alignment: Alignment.center,
-
+                padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
                 child: const Text(
                   'Welcome to',
                   style: TextStyle(fontSize: 35,
                     fontWeight: FontWeight.w700,
-                      fontFamily: 'Montserrat'),
-
+                      fontFamily: 'Montserrat'
+                  ),
                 ),
               ),
               Container(
                 alignment: Alignment.center,
-
                 child: const Text(
                   'Rada St.Pauls',
                   style: TextStyle(fontSize: 35,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Montserrat'
                   ),
-
                 ),
               ),
               Container(
                 alignment: Alignment.center,
-
                 child: const Text(
                   'For Your Mental Health Needs',
                   style: TextStyle(fontSize: 16,
-                      fontFamily: 'Montserrat'),
-
+                      fontFamily: 'Montserrat'
+                  ),
                 ),
               ),
               Container(

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:radaspu_2/model/message_model.dart';
 import 'package:radaspu_2/model/message_db.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
 
 String randomString() {
   final random = Random.secure();
@@ -24,12 +25,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late PusherClient pusher;
   late Channel channel;
-  String userId = "0712518659"; // TODO: get from auth details
   ScrollController _scrollController = new ScrollController();
   final myController = TextEditingController();
   List<TextMsg> messages = [];
+  String userId = '';
 
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   late TextMsg incomingMsg;
+
+  void getId() async {
+    User user = await _firebaseAuth.currentUser!;
+    this.userId = user.uid;
+  }
 
   @override
   void initState() {
@@ -46,6 +53,9 @@ class _MyAppState extends State<MyApp> {
 
     //subscribe to the channel
     channel = pusher.subscribe("SPU-CHAT");
+
+    getId();
+    print(userId);
 
     // listen to all messages coming to you; event name is your userId
     channel.bind(userId, (msg) async {
@@ -85,8 +95,9 @@ class _MyAppState extends State<MyApp> {
 
   // send a post request to the laravel application. The laravel app will send the message to Pusher
   postRequest() async{
+    getId();
     http.Response response = await http
-        .post(Uri.parse("http://192.168.0.22/chat/public/api/push_message"), headers: {
+        .post(Uri.parse("https://rada-test.herokuapp.com/api/push_message"), headers: {
       "Accept": "application/json"
     }, body: {
       "sender" : "Gloria", // TODO: use dynamic variable
@@ -225,6 +236,7 @@ class _MyAppState extends State<MyApp> {
                         icon: Icon(Icons.send),
                         onPressed: ()  {
                           if(myController.text.isNotEmpty){
+                            getId();
                             MessageDatabase.instance.create(TextMsg(id: randomString(), senderId: userId, message: myController.text, receiverId: widget.phone)).then((value) => {
                               setState(() {
                                 refreshMessages(); //scroll automatically

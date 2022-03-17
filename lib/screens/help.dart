@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:http/http.dart' as http;
 import 'package:radaspu_2/screens/map.dart';
+import 'package:radaspu_2/screens/querypage.dart';
 
 import '../theme.dart';
 
@@ -182,11 +183,11 @@ class _HelpState extends State<Help> {
                 style: TextStyle(color: Colors.amber[800]),
               ),
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (ctx) =>
-                //             QueryPage(id: 1, name: "Justice Issues")));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) =>
+                            QueryPage(id: 1, name: "Justice Issues")));
               },
               //backgroundColor: Colors.amber,
             ),
@@ -207,11 +208,11 @@ class _HelpState extends State<Help> {
                 style: TextStyle(color: Colors.green[400]),
               ),
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (ctx) =>
-                //             QueryPage(id: 2, name: "Academic Matters")));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) =>
+                            QueryPage(id: 2, name: "Academic Matters")));
               },
               //backgroundColor: Colors.indigo,
             ),
@@ -230,11 +231,11 @@ class _HelpState extends State<Help> {
               text: 'University Accomodation',
               icon: Icons.format_align_justify,*/
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (ctx) =>
-                //             QueryPage(id: 3, name: "University Accomodation")));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) =>
+                            QueryPage(id: 3, name: "University Accomodation")));
               },
               //backgroundColor: Colors.purple,
             ),
@@ -253,11 +254,11 @@ class _HelpState extends State<Help> {
               child: Text("App perfomance issues",
                   style: TextStyle(color: Colors.deepOrangeAccent)),
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (ctx) =>
-                //             QueryPage(id: 4, name: "App issues")));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) =>
+                            QueryPage(id: 4, name: "App issues")));
               },
               //backgroundColor: Colors.redAccent,
             ),
@@ -276,13 +277,13 @@ class _HelpState extends State<Help> {
               child:
               Text("Other issues", style: TextStyle(color: Colors.brown)),
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (ctx) => QueryPage(
-                //           id: 5,
-                //           name: "Other issues",
-                //         )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) => QueryPage(
+                          id: 5,
+                          name: "Other issues",
+                        )));
               },
               //backgroundColor: Colors.indigoAccent,
             ),
