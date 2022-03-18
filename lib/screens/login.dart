@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:radaspu_2/screens/dashboard.dart';
+import 'package:radaspu_2/screens/password_reset.dart';
 import 'package:radaspu_2/screens/sign_up.dart';
 import 'package:radaspu_2/screens/studentauth.dart';
 import 'package:radaspu_2/theme.dart';
@@ -100,7 +101,8 @@ class _LoginState extends State<Login> {
                     ),
                     TextButton(
                       onPressed: () {
-                        //forgot password screen
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => PasswordReset()));
                       },
                       child: const Text('Forgot Password',
                         style: TextStyle(color: Colors.black),),
@@ -177,6 +179,8 @@ class _LoginState extends State<Login> {
           ),
           duration: Duration(seconds: 3),
           isDismissible: false,
+          backgroundColor: Colors.redAccent,
+            flushbarPosition: FlushbarPosition.TOP,
         )
           ..show(context);
       }
@@ -191,6 +195,8 @@ class _LoginState extends State<Login> {
           ),
           duration: Duration(seconds: 3),
           isDismissible: false,
+          backgroundColor: Colors.redAccent,
+            flushbarPosition: FlushbarPosition.TOP,
         )
           ..show(context);
       }
@@ -200,7 +206,8 @@ class _LoginState extends State<Login> {
     message: "You entered the wrong password",
     duration: Duration(seconds: 3),
     isDismissible: true,
-    flushbarPosition: FlushbarPosition.TOP,
+    flushbarPosition: FlushbarPosition.TOP
+      ,
     icon: Icon(
     Icons.error_outline,
     color: Colors.white,
@@ -218,7 +225,8 @@ class _LoginState extends State<Login> {
     message: "You entered an invalid email",
     duration: Duration(seconds: 3),
     isDismissible: true,
-    flushbarPosition: FlushbarPosition.TOP,
+    flushbarPosition: FlushbarPosition.TOP
+      ,
     icon: Icon(
     Icons.error_outline,
     color: Colors.white,

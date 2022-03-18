@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffE4B04A),
+        backgroundColor: AppColours.colorMain,
         body: Padding(
             padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),
             child: ListView(children: <Widget>[
@@ -26,7 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
                 child: const Text(
                   'Welcome to',
-                  style: TextStyle(fontSize: 35,
+                  style: TextStyle(
+                      color:Colors.white,
+                      fontSize: 35,
                     fontWeight: FontWeight.w700,
                       fontFamily: 'Montserrat'),
 

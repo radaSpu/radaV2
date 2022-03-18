@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:radaspu_2/screens/help.dart';
 import 'package:radaspu_2/screens/notification.dart';
+import 'package:radaspu_2/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Information.dart';
@@ -285,7 +286,7 @@ class _DashboardState extends State<Dashboard> {
 
 Widget _cardDashBoard(String title, String description, String image) {
   return Card(
-      color: Color(0xffE4B04A),
+      color: AppColours.colorMain,
       elevation: 30,
       shadowColor: Colors.white,
       shape: RoundedRectangleBorder(
@@ -301,14 +302,14 @@ Widget _cardDashBoard(String title, String description, String image) {
             title: Text(
               title,
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Montserrat',
                   fontSize: 20),
             ),
             subtitle: Text(
               description,
-              style: TextStyle(color: Colors.black.withOpacity(0.6),
+              style: TextStyle(color: Colors.white.withOpacity(0.6),
                 fontFamily: 'Montserrat'),
             ),
           ),
