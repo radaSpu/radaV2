@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../theme.dart';
+import 'mentorship.dart';
 
 
 class MentorShipLanding extends StatefulWidget {
@@ -86,7 +87,7 @@ class _MentorShipLandingState extends State<MentorShipLanding> {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: AppColours.colorMain),
+                      color: Colors.black),
                 ),
                 Padding(
                   padding:
@@ -137,7 +138,12 @@ class _MentorShipLandingState extends State<MentorShipLanding> {
                           minimumSize: MaterialStateProperty.all(Size(60, 60))
                       ),
                       onPressed: () {
-
+                        Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (ctx) => Mentorship()
+                           )
+                        );
                       },
                     ),
                   ),
