@@ -54,10 +54,10 @@ class Locations {
 }
 
 Future<Locations> getGoogleOffices() async {
-  var googleLocationsURL = Uri.parse('http://rada.uonbi.ac.ke/radaweb/api/locations/get');
+  var googleLocationsURL = Uri.parse('http://rada.spu.ac.ke/api/locations/get');
   // Retrieve the locations of Google offices
   final response = await http.get(googleLocationsURL);
-  //print(response.body);
+  print(response.body);
   if (response.statusCode == 200) {
     return Locations.fromJson(json.decode(response.body));
   } else {

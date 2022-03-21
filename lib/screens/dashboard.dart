@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:radaspu_2/screens/help.dart';
 import 'package:radaspu_2/screens/notification.dart';
+import 'package:radaspu_2/screens/profile.dart';
 import 'package:radaspu_2/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Information.dart';
+import 'contributors.dart';
 import 'login.dart';
 import 'mentorshiplanding.dart';
 
@@ -131,18 +133,18 @@ class _DashboardState extends State<Dashboard> {
                         builder: (context) => Login()),
                   );
                 } else if (str == "Profile") {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => ProfilePage(
-                  //         id: useruid[0],
-                  //       )),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfilePage(
+                          id: useruid[0],
+                        )),
+                  );
                 } else if (str == "Contributors") {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (ctx) => Contributors()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (ctx) => Contributors()));
                 }
               },
             ),

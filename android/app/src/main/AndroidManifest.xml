@@ -3,6 +3,8 @@
    <application
         android:label="radaspu_2"
         android:icon="@mipmap/launcher_icon">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyCbT_1GDZ9iuBucnt4WV-XlfoNhbx_PQk8"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
