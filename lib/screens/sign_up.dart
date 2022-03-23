@@ -228,17 +228,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void storeToFirestore(String username, String gender, String phone, String university,String dob ) {
     if (user.emailVerified) {
-      // FirebaseFirestore.instance.collection("UserData").doc(user.uid).set({
-      //   "email": user.email,
-      //   "username": username,
-      //   "gender": gender,
-      //   "phone": phone,
-      //   "university": university,
-      //   "date of birth": dob
-      // }).then((value) => {
+      FirebaseFirestore.instance.collection("UserData").doc(user.uid).set({
+        "email": user.email,
+        "username": username,
+        "gender": gender,
+        "phone": phone,
+        "university": university,
+        "date of birth": dob
+      }).then((value) => {
       Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => Dashboard()));
-      // });
+      MaterialPageRoute(builder: (context) => Dashboard()))
+      });
     }
     else {
       Flushbar(
