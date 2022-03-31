@@ -92,6 +92,7 @@ flutter:
     - assets/images/Quick_Notification_Icon.png
     - assets/images/HELP_Icon.png
     - assets/images/intro.jpg
+    - assets/images/student1.jfif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

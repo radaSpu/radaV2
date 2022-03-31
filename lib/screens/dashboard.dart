@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:radaspu_2/screens/counsellors.dart';
 import 'package:radaspu_2/screens/help.dart';
 import 'package:radaspu_2/screens/notification.dart';
 import 'package:radaspu_2/screens/profile.dart';
@@ -94,8 +95,27 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey[100],
           elevation: 0,
+          centerTitle: true,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+              size: 27,
+            ),
+          ),
+          title: const Text(
+            'Dashboard',
+            style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Montserrat',
+                color: Colors.black),
+          ),
           actions: [
             PopupMenuButton<String>(
               icon: Icon(Icons.menu, color: Colors.black),
@@ -103,22 +123,28 @@ class _DashboardState extends State<Dashboard> {
                 const PopupMenuItem<String>(
                   value:'Profile',
                   child: ListTile(
-                    leading: Icon(Icons.add),
-                    title: Text('Profile'),
+                    title: Text('Profile',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                    ),),
                   ),
                 ),
                 const PopupMenuItem<String>(
                   value:'Contributors',
                   child: ListTile(
-                    leading: Icon(Icons.anchor),
-                    title: Text('Contributors'),
+                    title: Text('Contributors',
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                        )),
                   ),
                 ),
                 const PopupMenuItem<String>(
                   value:'Logout',
                   child: ListTile(
-                    leading: Icon(Icons.article),
-                    title: Text('Logout'),
+                    title: Text('Logout',
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                        )),
                   ),
                 ),
               ],
@@ -150,134 +176,137 @@ class _DashboardState extends State<Dashboard> {
             ),
           ],
         ),
-        backgroundColor: Colors.white,
-        body: Padding(
-            padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-            child: ListView(children: <Widget>[
-              Container(
-                padding: const EdgeInsets.fromLTRB(3, 10, 0, 10),
-                child: const Text(
-                  'Dashboard',
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Montserrat'),
+        backgroundColor: Colors.grey[100],
+        body: Stack(
+    children: <Widget>[
+    Container(
+    height: MediaQuery.of(context).size.height,
+    width: MediaQuery.of(context).size.width / 3,
+    decoration: BoxDecoration(
+    color: AppColours.colorMain,
+    ),
+        ),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+              child: ListView(children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.fromLTRB(3, 10, 0, 10),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: Row(children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (ctx) => Information(synced: synced)));
-                      },
-                      child: _cardDashBoard('Information', 'Knowledge is power',
-                          'assets/images/Information_Icon.png'),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Row(children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (ctx) => Information(synced: synced)));
+                        },
+                        child: _cardDashBoard('Information', 'Knowledge is power',
+                            'assets/images/Information_Icon.png'),
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: Row(children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (ctx) => Information(
-                        //             synced: synced,
-                        //           )));
-                      },
-                      child: _cardDashBoard(
-                          'Student Counselling',
-                          'Free Professional Counselling',
-                          'assets/images/Student_Counselling_Icon.png'),
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Row(children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (ctx) =>CounsellorsHome()));
+                        },
+                        child: _cardDashBoard(
+                            'Student Counselling',
+                            'Free Professional Counselling',
+                            'assets/images/Student_Counselling_Icon.png'),
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: Row(children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (ctx) => Information(
-                        //           synced: synced,
-                        //         )));
-                      },
-                      child: _cardDashBoard(
-                          'Student Forums',
-                          'Share with the Group',
-                          'assets/images/Student_Forum_Icon.png'),
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Row(children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (ctx) => Information(
+                          //           synced: synced,
+                          //         )));
+                        },
+                        child: _cardDashBoard(
+                            'Student Forums',
+                            'Share with the Group',
+                            'assets/images/Student_Forum_Icon.png'),
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: Row(children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => Notifications()));
-                      },
-                      child: _cardDashBoard(
-                          'Quick Notification',
-                          'Instant Notification',
-                          'assets/images/Quick_Notification_Icon.png'),
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Row(children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (ctx) => Notifications()));
+                        },
+                        child: _cardDashBoard(
+                            'Quick Notification',
+                            'Instant Notification',
+                            'assets/images/Quick_Notification_Icon.png'),
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: Row(children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (ctx) => Help()));
-                      },
-                      child: _cardDashBoard('Help', 'Locations and Contacts',
-                          'assets/images/HELP_Icon.png'),
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Row(children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (ctx) => Help()));
+                        },
+                        child: _cardDashBoard('Help', 'Locations and Contacts',
+                            'assets/images/HELP_Icon.png'),
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: Row(children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => MentorShipLanding(
-                                  usertype: "user",
-                                  id: useruid[0],
-                                )));
-                      },
-                      child: _cardDashBoard(
-                          'Student Mentorship',
-                          'Mentorship Programs',
-                          'assets/images/Virtual_Mentorship_Icon.png'),
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Row(children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (ctx) => MentorShipLanding(
+                                    usertype: "user",
+                                    id: useruid[0],
+                                  )));
+                        },
+                        child: _cardDashBoard(
+                            'Student Mentorship',
+                            'Mentorship Programs',
+                            'assets/images/Virtual_Mentorship_Icon.png'),
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-            ])));
+                  ]),
+                ),
+              ])),
+        ]
+        ),
+    );
   }
 
   void signOut() async {
@@ -288,9 +317,9 @@ class _DashboardState extends State<Dashboard> {
 
 Widget _cardDashBoard(String title, String description, String image) {
   return Card(
-      color: AppColours.colorMain,
-      elevation: 30,
-      shadowColor: Colors.white,
+      color: Colors.white,
+      elevation: 10,
+      shadowColor: Colors.grey[100],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -304,14 +333,14 @@ Widget _cardDashBoard(String title, String description, String image) {
             title: Text(
               title,
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Montserrat',
                   fontSize: 20),
             ),
             subtitle: Text(
               description,
-              style: TextStyle(color: Colors.white.withOpacity(0.6),
+              style: TextStyle(color: Colors.black.withOpacity(0.6),
                 fontFamily: 'Montserrat'),
             ),
           ),

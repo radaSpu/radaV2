@@ -364,9 +364,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void getProfile() async {
     var documentReference =
-        FirebaseFirestore.instance.collection('Users').doc(widget.id);
+        FirebaseFirestore.instance.collection('UsersData').doc(widget.id);
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("UsersData")
         .doc(widget.id)
         .get()
         .then((value) {

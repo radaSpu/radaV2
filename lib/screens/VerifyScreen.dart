@@ -39,36 +39,32 @@ class _VerifyScreenState extends State<VerifyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: Column(
-            children: [
-              Container(
-                child: Text(
-                    'Verifying',
-                    style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Montserrat')
-
-                    ),
-              ),
-              Container(
-                child: Text(
-                    'Your Email...',
-                    style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Montserrat')
-
-                ),
-              ),
-            ],
-          ),
+      body: Padding(
+        padding: EdgeInsets.all(0.0),
+        child: ListView(
+          children: <Widget>[
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.fromLTRB(10, MediaQuery.of(context).size.height / 2, 10, 0),
+              child: Text('Verifying',
+                  style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Montserrat')),
+            ),
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: Text('Your Email...',
+                  style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Montserrat')),
+            ),
+          ],
         ),
       ),
-      );
+    );
   }
 
   Future<void> checkEmailVerified() async {

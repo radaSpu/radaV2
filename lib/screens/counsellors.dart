@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'chat.dart';
 
@@ -18,6 +19,8 @@ List<Map<String, String>> counsellors = [
   }
 ];
 
+List counsellors_id= [];
+
 class CounsellorsHome extends StatefulWidget {
   const CounsellorsHome({Key? key}) : super(key: key);
 
@@ -25,7 +28,18 @@ class CounsellorsHome extends StatefulWidget {
   _CounsellorsHomeState createState() => _CounsellorsHomeState();
 }
 
+
+
 class _CounsellorsHomeState extends State<CounsellorsHome> {
+  @override
+  void initState() {
+    // TODO: implement initStater
+    super.initState();
+    // detailsHelper = DetailsHelper();
+    setState(() {
+      getCounsellors();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,4 +66,16 @@ class _CounsellorsHomeState extends State<CounsellorsHome> {
           : const Center(child: Text('No items')),
     );
   }
+  void getCounsellors() async {
+      // Get docs from collection reference
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('UserData').get();;
+
+      // Get data from docs and convert map to List
+      final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+      //for a specific field
+      counsellors_id = querySnapshot.docs.map((doc) => doc.get('phone')).toList();
+
+      print(counsellors_id);
+    }
 }
+
