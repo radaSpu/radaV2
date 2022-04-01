@@ -23,6 +23,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   Map<String,dynamic>profile_data = {};
+  Map<String,dynamic>profile = {};
 
   final _nameController = TextEditingController();
   var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -33,7 +34,10 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getProfile();
+    setState(() {
+      getProfile();
+    });
+
   }
 
   Future<void> _uploadFile(PlatformFile file) async {
@@ -85,13 +89,17 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      appBar: Platform.isIOS?AppBar(
-        backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           "Profile",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black,
+          fontFamily: 'Montserrat',
+          fontSize: 20,
+          fontWeight:FontWeight.w600),
         ),
-        elevation: 0,
+        elevation: 10,
+        centerTitle: true,
         leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
@@ -100,27 +108,13 @@ class _ProfilePageState extends State<ProfilePage> {
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
-      ):AppBar(
-        backgroundColor: Colors.grey[100],
-          title: Text(
-            "Profile",
-            style: TextStyle(color: Colors.black),
-          ),
-          elevation: 0,
-          leading: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              )),
-        ),
-      body: profile_data.length <= 0
-          ? Center(
-              child: circularProgress(),
-            )
-          : SingleChildScrollView(
+      ),
+      body: FutureBuilder(
+        future: getProfile(),
+        builder: (BuildContext context,snapshot) {
+          if (snapshot.hasData) {
+            profile_data = snapshot.data as Map<String, dynamic>;
+            return SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   Container(
@@ -140,11 +134,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               Stack(
                                 children: [
                                   CircleAvatar(
-                                    backgroundImage: NetworkImage(profile_data[
-                                                0]["image"] ==
-                                            null
-                                        ? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
-                                        : profile_data[0]["image"]),
+                                    // backgroundImage: NetworkImage(profile_data["image"] ==
+                                    //         null
+                                    //     ? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                                    //     : profile_data["image"]),
                                     radius: 50.0,
                                   ),
                                   Positioned(
@@ -166,10 +159,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 10.0,
                               ),
                               Text(
-                                profile_data[0]["name"],
+                                profile_data["username"],
                                 style: TextStyle(
-                                  fontSize: 22.0,
-                                  color: Colors.blue,
+                                    fontSize: 22.0,
+                                    color: Colors.black,
+                                    fontFamily: 'Montserrat'
                                 ),
                               ),
                               SizedBox(
@@ -192,19 +186,21 @@ class _ProfilePageState extends State<ProfilePage> {
                                             Text(
                                               "University",
                                               style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18.0,
-                                                fontWeight: FontWeight.w500,
+                                                  color: Colors.black,
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'Montserrat'
                                               ),
                                             ),
                                             SizedBox(
                                               height: 5.0,
                                             ),
                                             Text(
-                                              profile_data[0]["university"],
+                                              profile_data["university"],
                                               style: TextStyle(
-                                                fontSize: 18.0,
-                                                color: Colors.green[400],
+                                                  fontSize: 18.0,
+                                                  color: AppColours.colorMain,
+                                                  fontFamily: 'Montserrat'
                                               ),
                                             )
                                           ],
@@ -214,21 +210,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                         child: Column(
                                           children: <Widget>[
                                             Text(
-                                              "Campus",
+                                              "Date of Birth",
                                               style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18.0,
-                                                fontWeight: FontWeight.w500,
+                                                  color: Colors.black,
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'Montserrat'
                                               ),
                                             ),
                                             SizedBox(
                                               height: 5.0,
                                             ),
                                             Text(
-                                              profile_data[0]["campus"],
+                                              profile_data["date of birth"],
                                               style: TextStyle(
-                                                fontSize: 18.0,
-                                                color: Colors.green[400],
+                                                  fontSize: 18.0,
+                                                  color: AppColours.colorMain,
+                                                  fontFamily: 'Montserrat'
                                               ),
                                             )
                                           ],
@@ -238,21 +236,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                         child: Column(
                                           children: <Widget>[
                                             Text(
-                                              "Sex",
+                                              "Phone",
                                               style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18.0,
-                                                fontWeight: FontWeight.w500,
+                                                  color: Colors.black,
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'Montserrat'
                                               ),
                                             ),
                                             SizedBox(
                                               height: 5.0,
                                             ),
                                             Text(
-                                              profile_data[0]["gender"],
+                                              profile_data["phone"],
                                               style: TextStyle(
-                                                fontSize: 18.0,
-                                                color: Colors.green[400],
+                                                  fontSize: 18.0,
+                                                  color: AppColours.colorMain,
+                                                  fontFamily: 'Montserrat'
                                               ),
                                             )
                                           ],
@@ -278,7 +278,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             borderRadius: BorderRadius.circular(0),
                             child: TextField(
                               style:
-                                  TextStyle(color: Colors.grey, fontSize: 18),
+                              TextStyle(color: Colors.grey, fontSize: 18),
                               controller: _nameController,
                               obscureText: false,
                               cursorWidth: 3.0,
@@ -288,69 +288,68 @@ class _ProfilePageState extends State<ProfilePage> {
                                   checked = true;
                                 });
                               },
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.grey[100],
-                                hintText: 'Username',
-                                labelStyle: TextStyle(color: Colors.grey),
-                                hintStyle: TextStyle(color: Colors.grey[500]),
-                                contentPadding: const EdgeInsets.only(
-                                    top: 18, bottom: 18, left: 15, right: 15),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                //labelText: 'Password',
-                              ),
                             ),
                           ),
                           !checked
                               ? Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 45,
-                                  child: FlatButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => PasswordReset(),
-                                          ));
-                                    },
-                                    color: Colors.red,
-                                    child: Text(
-                                      "Change Password",
-                                      style: TextStyle(color: Colors.white),
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            height: 45,
+                            child: ElevatedButton(
+                                child: const Text('Change Password',
+                                    style: TextStyle(color: Colors.white,
+                                        fontFamily: 'Montserrat')),
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                30.0),
+                                            side: BorderSide(
+                                                color: AppColours.colorMain)
+                                        )
                                     ),
-                                  ),
-                                )
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.black),
+                                    minimumSize: MaterialStateProperty.all(
+                                        Size(60, 60))
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              PasswordReset()));
+                                }
+                            ),
+
+                          )
                               : SizedBox(),
                           checked
                               ? Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 45,
-                                  child: FlatButton(
-                                    onPressed: () {
-                                      scaffoldKey.currentState!
-                                          .showSnackBar(SnackBar(
-                                        content:
-                                            Text("Working, please wait...."),
-                                        backgroundColor: Colors.blue,
-                                      ));
-                                      changeName(_nameController.text);
-                                    },
-                                    color: Colors.blue,
-                                    child: Text(
-                                      "Change Profile",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                )
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            height: 45,
+                            child: FlatButton(
+                              onPressed: () {
+                                scaffoldKey.currentState!
+                                    .showSnackBar(SnackBar(
+                                  content:
+                                  Text("Working, please wait...."),
+                                  backgroundColor: Colors.blue,
+                                ));
+                                changeName(_nameController.text);
+                              },
+                              color: Colors.blue,
+                              child: Text(
+                                "Change Profile",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          )
                               : SizedBox()
                         ],
                       ),
@@ -358,30 +357,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-            ),
+            );
+          }
+          else{
+            return circularProgress();
+          }
+        }
+      ),
     );
   }
 
-  void getProfile() async {
-    // var documentReference =
-    //     FirebaseFirestore.instance.collection('UserData').doc(widget.id);
-    // await FirebaseFirestore.instance
-    //     .collection("UserData")
-    //     .doc(widget.id)
-    //     .get()
-    //     .then((value) {
-    //   setState(() {
-    //     var myList = value.data as Map<String,dynamic>?;
-    //     profile_data.add(myList!);
-    //     _nameController.text = profile_data[0]["name"].toString();
-    //   });
-    // });
+  Future<Map<String,dynamic>> getProfile() async {
 
     DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('UserData').doc(widget.id).get();
-
     // Get data from docs and convert map to List
-    profile_data = snapshot.data as Map<String,dynamic>;
-    print(profile_data);
+    profile = snapshot.data() as Map<String,dynamic>;
+    return profile;
   }
 
   void changeName(String user_name) async {

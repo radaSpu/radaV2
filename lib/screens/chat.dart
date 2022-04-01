@@ -98,7 +98,7 @@ class _MyAppState extends State<MyApp> {
   // send a post request to the laravel application. The laravel app will send the message to Pusher
   postRequest() async{
     http.Response response = await http
-        .post(Uri.parse("http://192.168.0.13/rada-web-app/public/api/push_message"), headers: {
+        .post(Uri.parse("http://rada.spu.ac.ke/api/push_message"), headers: {
       "Accept": "application/json"
     }, body: {
       "sender" : userId,
