@@ -8,6 +8,7 @@ import 'package:radaspu_2/model/message_model.dart';
 import 'package:radaspu_2/model/message_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:radaspu_2/theme.dart';
 
 String randomString() {
   final random = Random.secure();
@@ -31,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   List<TextMsg> messages = [];
   String userId = '';
   String userName = '';
+  String phone = '';
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   late TextMsg incomingMsg;
@@ -187,7 +189,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.brown,
+          backgroundColor: AppColours.colorMain,
           title: Text(widget.name),
         ),
         body: Container(
@@ -260,15 +262,12 @@ class _MyAppState extends State<MyApp> {
     User user = await _firebaseAuth.currentUser!;
     this.userId = user.uid;
     // Get docs from collection reference
-    QuerySnapshot querySnapshot = (await FirebaseFirestore.instance.collection('UserData').doc(this.userId).get()) as QuerySnapshot<Object?>;
-
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('UserData').doc(userId).get();
     // Get data from docs and convert map to List
-    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-    //for a specific field
-    this.userId = querySnapshot.docs.map((doc) => doc.get('phone')).toString();
-    this.userName =querySnapshot.docs.map((doc) => doc.get('username')).toString();
-    print(userId);
-    print(userName);
+    var profile = snapshot.data() as Map<String,dynamic>;
+    this.userName = profile["username"];
+    this.phone = profile["phone"];
+    print(phone);
 
   }
 }

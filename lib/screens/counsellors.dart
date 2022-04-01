@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:radaspu_2/theme.dart';
 import 'chat.dart';
 
 String _title = "Counsellors";
 
 List counsellors = [];
+
+List counsel = [];
 
 List counsellors_id= [];
 
@@ -30,39 +34,62 @@ class _CounsellorsHomeState extends State<CounsellorsHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title), backgroundColor: Colors.brown,),
-      body: counsellors.isNotEmpty
-          ? ListView.builder(
-        itemCount: counsellors.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            leading: Image.asset('assets/images/Virtual_Mentorship_Icon.png'),
-            title: Text(counsellors[index]["name"]!),
-            subtitle: Text("Mental health and wellbeing"),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => MyApp(name: counsellors[index]["name"]!, phone: counsellors[index]["phone"]!)
-                ),
-              );
-            },
-          );
-        },
-      )
-          : const Center(child: Text('No items')),
+      appBar: AppBar(title: Text(_title), backgroundColor: AppColours.colorMain,),
+      body:FutureBuilder(
+        future: getCounsellors(),
+        builder: (context, projectSnap) {
+    if (projectSnap.hasData) {
+      counsellors = projectSnap.data! as List<dynamic>;
+    return ListView.builder(
+    itemCount: counsellors.length,
+    itemBuilder: (BuildContext context, int index) {
+    return ListTile(
+    leading: Image.asset('assets/images/Virtual_Mentorship_Icon.png'),
+    title: Text(counsellors[index]["username"]),
+    subtitle: Text("Mental health and wellbeing"),
+    onTap: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) => MyApp(name: counsellors[index]["username"], phone: counsellors[index]["phone"])
+    ),
+    );
+    },
+    );
+    },
+    );
+    }
+    else{
+    return circularProgress();
+    }
+    }
+    )
     );
   }
-  void getCounsellors() async {
+  Future<List> getCounsellors() async {
       // Get docs from collection reference
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('UserData').get();;
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('UserData').get();
 
       // Get data from docs and convert map to List
-      counsellors = querySnapshot.docs.map((doc) => doc.data()).toList();
+      counsel = querySnapshot.docs.map((doc) => doc.data()).toList();
+
+
+      return counsel;
       //for a specific field
       counsellors_id = querySnapshot.docs.map((doc) => doc.get('phone')).toList();
 
-      print(counsellors_id);
     }
+  Widget circularProgress() {
+    return SpinKitFadingCircle(
+      itemBuilder: (BuildContext context, int index) {
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            /*color: index.isEven ? Colors.blue : Colors.white,*/
+              shape: BoxShape.circle,
+              color: AppColours.colorMain),
+        );
+      },
+    );
+  }
 }
 
