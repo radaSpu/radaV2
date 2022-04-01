@@ -60,9 +60,10 @@ class _MyAppState extends State<MyApp> {
 
     getUserDetails();
     print(userId);
+    print(phone);
 
     // listen to all messages coming to you; event name is your userId
-    channel.bind(userId, (msg) async {
+    channel.bind(phone, (msg) async {
       // convert incoming messages to json format
       var convert = await json.decode(msg!.data!);
       print("The message is ${convert['message']}");
@@ -109,6 +110,7 @@ class _MyAppState extends State<MyApp> {
       "receiver_id": widget.phone
     });
     var converted = json.decode(response.body);
+    print(converted);
     myController.clear();
     print("status code: " + response.statusCode.toString());
   }
@@ -267,7 +269,5 @@ class _MyAppState extends State<MyApp> {
     var profile = snapshot.data() as Map<String,dynamic>;
     this.userName = profile["username"];
     this.phone = profile["phone"];
-    print(phone);
-
   }
 }
