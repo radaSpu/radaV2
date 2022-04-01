@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pusher_client/pusher_client.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -29,14 +30,15 @@ class _MyAppState extends State<MyApp> {
   final myController = TextEditingController();
   List<TextMsg> messages = [];
   String userId = '';
+  String userName = '';
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   late TextMsg incomingMsg;
 
-  void getId() async {
-    User user = await _firebaseAuth.currentUser!;
-    this.userId = user.uid;
-  }
+  // void getId() async {
+  //   User user = await _firebaseAuth.currentUser!;
+  //   this.userId = user.uid;
+  // }
 
   @override
   void initState() {
@@ -54,7 +56,7 @@ class _MyAppState extends State<MyApp> {
     //subscribe to the channel
     channel = pusher.subscribe("SPU-CHAT");
 
-    getId();
+    getUserDetails();
     print(userId);
 
     // listen to all messages coming to you; event name is your userId
@@ -64,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       print("The message is ${convert['message']}");
 
       // create a TextMsg from the incoming message
-      incomingMsg = new TextMsg(id: randomString(), senderId: convert['message']['sender'], message: convert['message']['message'], receiverId: convert['message']['receiver_id']);
+      incomingMsg = new TextMsg(id: randomString(), senderId: convert['message']['sender_id'], message: convert['message']['message'], receiverId: convert['message']['receiver_id']);
       print("msg" + incomingMsg.toString());
 
       // add the incoming message to the database
@@ -95,14 +97,13 @@ class _MyAppState extends State<MyApp> {
 
   // send a post request to the laravel application. The laravel app will send the message to Pusher
   postRequest() async{
-    getId();
     http.Response response = await http
-        .post(Uri.parse("https://rada-test.herokuapp.com/api/push_message"), headers: {
+        .post(Uri.parse("http://192.168.0.13/rada-web-app/public/api/push_message"), headers: {
       "Accept": "application/json"
     }, body: {
-      "sender" : "Gloria", // TODO: use dynamic variable
+      "sender" : userId,
+      "sender_name":userName,
       "message": myController.text,
-      "user_id": userId,
       "receiver_id": widget.phone
     });
     var converted = json.decode(response.body);
@@ -236,7 +237,6 @@ class _MyAppState extends State<MyApp> {
                         icon: Icon(Icons.send),
                         onPressed: ()  {
                           if(myController.text.isNotEmpty){
-                            getId();
                             MessageDatabase.instance.create(TextMsg(id: randomString(), senderId: userId, message: myController.text, receiverId: widget.phone)).then((value) => {
                               setState(() {
                                 refreshMessages(); //scroll automatically
@@ -254,5 +254,21 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  void getUserDetails() async {
+    User user = await _firebaseAuth.currentUser!;
+    this.userId = user.uid;
+    // Get docs from collection reference
+    QuerySnapshot querySnapshot = (await FirebaseFirestore.instance.collection('UserData').doc(this.userId).get()) as QuerySnapshot<Object?>;
+
+    // Get data from docs and convert map to List
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    //for a specific field
+    this.userId = querySnapshot.docs.map((doc) => doc.get('phone')).toString();
+    this.userName =querySnapshot.docs.map((doc) => doc.get('username')).toString();
+    print(userId);
+    print(userName);
+
   }
 }

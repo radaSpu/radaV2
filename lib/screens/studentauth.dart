@@ -78,7 +78,7 @@ class _StudentAuthState extends State<StudentAuth> {
                           ),
                           validator: MultiValidator([
                             RequiredValidator(errorText: "* Required"),
-                            schoolEmailValidator(errorText: "Enter valid school email")
+                            //schoolEmailValidator(errorText: "Enter valid school email")
                           ])
                       ),
                     ),

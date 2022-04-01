@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: ListView(children: <Widget>[
                   Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(10, 370, 10, 0),
+                    margin:EdgeInsets.fromLTRB(10, 300, 10, 0) ,
                     child: const Text(
                       'Welcome to',
                       style: TextStyle(
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),
+                    margin: const EdgeInsets.fromLTRB(10, 90, 10, 0),
                     child: ElevatedButton(
                       child: const Text('Sign up',
                           style: TextStyle(color: Colors.white)),

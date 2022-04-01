@@ -4,20 +4,7 @@ import 'chat.dart';
 
 String _title = "Counsellors";
 
-List<Map<String, String>> counsellors = [
-  {
-    'name': 'Anne',
-    'phone': '0706780121'
-  },
-  {
-    'name': 'Mary',
-    'phone': '0712345678'
-  },
-  {
-    'name': "Tom",
-    'phone': '0723546789'
-  }
-];
+List counsellors = [];
 
 List counsellors_id= [];
 
@@ -71,7 +58,7 @@ class _CounsellorsHomeState extends State<CounsellorsHome> {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('UserData').get();;
 
       // Get data from docs and convert map to List
-      final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+      counsellors = querySnapshot.docs.map((doc) => doc.data()).toList();
       //for a specific field
       counsellors_id = querySnapshot.docs.map((doc) => doc.get('phone')).toList();
 

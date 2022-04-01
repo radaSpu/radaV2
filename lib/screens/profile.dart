@@ -22,7 +22,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  List<Map> profile_data = [];
+  Map<String,dynamic>profile_data = {};
 
   final _nameController = TextEditingController();
   var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -363,19 +363,25 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void getProfile() async {
-    var documentReference =
-        FirebaseFirestore.instance.collection('UsersData').doc(widget.id);
-    await FirebaseFirestore.instance
-        .collection("UsersData")
-        .doc(widget.id)
-        .get()
-        .then((value) {
-      setState(() {
-        var myList = value.data as Map<String,dynamic>;
-        profile_data.add(myList);
-        _nameController.text = profile_data[0]["name"].toString();
-      });
-    });
+    // var documentReference =
+    //     FirebaseFirestore.instance.collection('UserData').doc(widget.id);
+    // await FirebaseFirestore.instance
+    //     .collection("UserData")
+    //     .doc(widget.id)
+    //     .get()
+    //     .then((value) {
+    //   setState(() {
+    //     var myList = value.data as Map<String,dynamic>?;
+    //     profile_data.add(myList!);
+    //     _nameController.text = profile_data[0]["name"].toString();
+    //   });
+    // });
+
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('UserData').doc(widget.id).get();
+
+    // Get data from docs and convert map to List
+    profile_data = snapshot.data as Map<String,dynamic>;
+    print(profile_data);
   }
 
   void changeName(String user_name) async {
